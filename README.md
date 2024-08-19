@@ -1,6 +1,10 @@
-# Sample Project
+# SWESARR
 
-This is an example of how teams can structure their project repositories and format their project README.md file.
+We will perform the first SWE retrievals on SnowEx SWESARR data using physically based algorithms. Exciting! SWESARR is an airborne X+dual Ku (~10, 13, 17 GHz) SAR flown over the Grand Mesa and Alaska SnowEx sites in 2020 and 2024. This technology builds straight into orbit! At least five space agencies have considered these frequencies to make the first reliable spaceborne estimates of global snow. The SWESARR team including Dylan Boyd (who is leading a tutorial on SWESARR!) has been working hard since 2020 to create the normalized radar cross-section (σ0) datasets from the raw radar data. We are finally so very close to using SWESARR to really answer some of the most central motivating questions behind SnowEx.
+
+The project will perform these retrievals using prototype, draft datasets, and the recently published BASE-AM algorithm (originally by my former student Jinmei Pan; read up on tower validation https://tc.copernicus.org/articles/18/1561/2024/tc-18-1561-2024.pdf and airborne validation https://tc.copernicus.org/articles/18/747/2024/).
+
+We’ll collaborate with the microstructure project led by H.P. Marshall, loop in latest SWESARR draft measurements from Dylan Boyd. Innovations to the algorithm, running at scale on the flight line data, comparing to microstructure and SWE and soil datasets are all possible directions.
 
 When creating a project repository from this template choose "Public" so other participants can follow progress. Add a "topic" to your repository details (click on the gear icon next to the "About" section on the repository page) to help others find your work (e.g. `icesat2-hackweek-2024`).
 
