@@ -11,6 +11,7 @@ The project will perform these retrievals using prototype, draft datasets, and t
 | Name | Personal goals | Can help with | Role |
 | ------------- | ------------- | ------------- | ------------- |
 | Mike D. | I want to get all the pieces set up to roll with SWESARR retrievals as soon as the SWESARR team makes data public| I can help with understanding retrieval algorithms and programming in Python  | Project Lead |
+| Dylan B. | ❄ I will spread the joy of SWESARR to the ends of the earth 🌎 | Anything SWESARR related! | Model I/O Lead |
 | ... | ... | ... | ... |
 | ... | ... | ... | ... |
 
