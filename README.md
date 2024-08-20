@@ -12,7 +12,7 @@ The project will perform these retrievals using prototype, draft datasets, and t
 | ------------- | ------------- | ------------- | ------------- |
 | Mike D. | I want to get all the pieces set up to roll with SWESARR retrievals as soon as the SWESARR team makes data public| I can help with understanding retrieval algorithms and programming in Python  | Project Lead |
 | Dylan B. | ❄ I will spread the joy of SWESARR to the ends of the earth 🌎 | Anything SWESARR related! | Model I/O Lead |
-| ... | ... | ... | ... |
+| Elodie M. | I'd like to understand how others are intending to use SWESARR data | Understanding SWESARR instrument and data specifics | Data Visualization and SWESARR Assistance |
 | ... | ... | ... | ... |
 
 ### The problem
