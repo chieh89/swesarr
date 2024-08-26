@@ -2,8 +2,8 @@
 """
 Created on Thu Aug 22 18:11:52 2024
 
-@author: drboyd1
-"""
+@author: drboyd
+""" 
 
 import glob, os, shutil, subprocess
 

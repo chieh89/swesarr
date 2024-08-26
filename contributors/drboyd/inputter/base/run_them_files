@@ -18,4 +18,4 @@ find "$base_dir" -type d -name 'sim*' | while read -r dir; do
     else
         echo "Error: MetroMEMLS script not found or not executable in $dir"
     fi
-done
+done 
