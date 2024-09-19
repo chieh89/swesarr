@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Base directory where to search for subdirectories
+base_dir="."
+
+# Find directories starting with 'sim' and process each one
+find "$base_dir" -type d -name 'sim*' | while read -r dir; do
+    echo "Processing directory: $dir"
+    
+    # Construct the path to the MetroMEMLS script
+    MetroMEMLS_script="$dir/MetroMEMLS"
+
+    # Check if the MetroMEMLS script exists and is executable
+    if [ -x "$MetroMEMLS_script" ]; then
+        echo "Executing MetroMEMLS in $dir"
+        # Execute the MetroMEMLS script
+        "$MetroMEMLS_script"
+    else
+        echo "Error: MetroMEMLS script not found or not executable in $dir"
+    fi
+done 
