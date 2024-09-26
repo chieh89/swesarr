@@ -2,8 +2,10 @@
 """
 Created on Thu Aug 22 18:11:52 2024
 
-@author: drboyd1
-"""
+@author: drboyd
+""" 
+
+import glob, os, shutil, subprocess
 
 def main_writer(fn_input='FILENAME.txt',   fn_RunParams='RunParams.txt',
                 fn_obs='tb_obs.txt',       fn_hyper='hyperpar.txt',
@@ -22,6 +24,7 @@ def main_writer(fn_input='FILENAME.txt',   fn_RunParams='RunParams.txt',
     run_params_writer(fn_input=fn_RunParams, run_params=run_params)
     hyper_params_writer(fn_input=fn_hyper, hyper_params=hyper_params)
     obs_writer(fn_input=fn_obs, obs_params=obs_params)
+    readme_writer()
 
 def readme_writer(fn_input = 'README.md'):
 
@@ -590,16 +593,16 @@ def hyper_params_writer(fn_input = 'hyperpar.txt', hyper_params={}):
 
 def obs_writer(fn_input='tb_obs.txt', obs_params={}):
     
-    sar_prior = [-17.5]
+    sar_obs = [-17.5]
     
     # this is so lazy. i'm so sorry
     if obs_params:
         for key in obs_params.keys():
-            sar_prior = obs_params[key]
+            sar_obs = obs_params[key]
     
     ###############################################33
     o_txt = [' Pit  #']
-    for each in sar_prior:
+    for each in sar_obs:
         o_txt.append('    ' + str(each))
         
     # output text
@@ -608,9 +611,35 @@ def obs_writer(fn_input='tb_obs.txt', obs_params={}):
 
 def main():
     # test function for MetroMEMLS interface
-    obs_params = {'sar_prior' : [ -15 ]}
+    obs_params = {'sar_obs' : [ -15 ]}
     main_writer(obs_params=obs_params)
+    
+def main_obs_looper(sar_obs, sim_dir='./', sim_name='sim', metro_memls_loc = './MetroMEMLS'):
+    # create inputs for running MetroMEMLS by looping over a set of SAR obs
+    # e.g., prepare 3 simulations in the folders
+    # ./sim0, ./sim1, ./sim2
+
+    
+    # file name base
+    fnb = sim_dir + sim_name
+    sim_names = [fnb + str(a) for a in range(len(sar_obs))]
+    
+    # create directories
+    for sim in sim_names:
+        if not os.path.isdir(sim):
+            os.makedirs(sim)
+            
+    # create directories and execute scripts!
+    cmd = 'chmod +x MetroMEMLS'
+    for sim, obs in zip(sim_names, sar_obs):
+        shutil.copy(metro_memls_loc, sim)
+        os.chdir(sim)
+        obs_params = {'sar_obs' : [obs]}
+        main_writer(obs_params=obs_params)
+        result = subprocess.run(cmd, shell=True, check=True, capture_output=True, text=True)
+        os.chdir('..')
+
     
     
 if __name__ == "__main__":
-    main()
+    main_obs_looper([-17.5, -15, -12.5])

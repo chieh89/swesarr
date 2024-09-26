@@ -1,0 +1,54 @@
+#!/bin/bash
+
+base_dir="."  # Base directory where to search for subdirectories
+my_cmds=()    #  array for the commands to execute
+group_size=$1 # <-- command line argument representing number of cmds to execute in parallel
+
+# Find directories starting with 'beg' and append to the array
+while IFS= read -r -d '' dir; do
+    my_cmds+=("$dir/MetroMEMLS")
+done < <(find . -maxdepth 1 -type d -name 'sim*' -print0)
+
+## CHAT GPT NONSENSE
+
+###########################################
+# Function to execute a list of commands
+execute_cmds() {
+    local start=$1
+    local end=$2
+    for ((ii=start; ii<=end; ii++)); do
+        # Execute commands in parallel
+        ${my_cmds[ii]} &
+    done
+
+    # Wait for all background processes to finish
+    wait
+}
+
+# Iterate over commands in groups of 2
+total_commands=${#my_cmds[@]}
+# group_size=$1
+
+for ((i=0; i<total_commands; i+=group_size)); do
+    # Calculate the end index for the current group
+    end=$((i + group_size - 1))
+    # Ensure end index does not exceed the array length
+    if ((end >= total_commands)); then
+        end=$((total_commands - 1))
+    fi
+
+    # Execute commands in the current group
+    execute_cmds $i $end
+done
+####################################################
+# Simple execution:"
+####################################################
+# # Run each command in parallel
+# for cmd in "${my_cmds[@]}"; do
+#     bash -c "$cmd" &
+#     # echo "$cmd" &
+# done
+#
+# # Wait for all background jobs to finish
+# wait
+#################################################### 
